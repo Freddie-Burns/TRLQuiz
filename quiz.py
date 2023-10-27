@@ -2,7 +2,7 @@ import random
 
 
 # Technology readiness level and description from EU definitions
-trl = {
+TRL = {
     9: "Actual system proven in operational environment",
     8: "System complete and qualified",
     7: "System prototype demonstration in operational environment",
@@ -15,7 +15,7 @@ trl = {
 }
 
 # Create list from dict for random.choice
-trl_list = list(trl.items())
+TRL_LIST = list(TRL.items())
 
 
 class QuizTypeEnum:
@@ -36,8 +36,7 @@ def choose_quiz_type():
     """
     User picks whether to be tested on level number, description, or both.
     """
-    print("Would you like to be tested on level number, "
-          "description, or both?",)
+    print("Would you like to be tested on level number, description, or both?")
     user_choice = input("Type l, d, or b then press enter to choose.\n")
     return QuizTypeEnum.input_chars[user_choice]
 
@@ -45,9 +44,9 @@ def choose_quiz_type():
 def description_question():
     """
     User is given the TRL number and must recall the description. When they
-    have dones this they press enter to reveal the answer.
+    have done this they press enter to reveal the answer.
     """
-    level, description = random.choice(trl_list)
+    level, description = random.choice(TRL_LIST)
     print(f"What happens at level {level}?")
     input("Press enter to reveal answer:")
     print(description)
@@ -58,7 +57,7 @@ def level_question():
     """
     User is given the TRL description and must enter the corresponding level.
     """
-    level, description = random.choice(trl_list)
+    level, description = random.choice(TRL_LIST)
     print("What level is this?")
     user_answer = input(f"{description}\n")
 
