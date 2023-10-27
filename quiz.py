@@ -1,3 +1,9 @@
+"""
+Command line quiz to learn the EU Technology Readiness Level definitions.
+Press q at any time to quit.
+"""
+
+
 import random
 
 
@@ -18,6 +24,10 @@ TRL = {
 TRL_LIST = list(TRL.items())
 
 
+# Global bool, when set False the game loop & programme end
+running = True
+
+
 class QuizTypeEnum:
     """Enumeration for quiz types."""
     both = 0
@@ -32,12 +42,30 @@ class QuizTypeEnum:
     }
 
 
+def check_quit(user_input):
+    """
+    If user input is q, return True and end programme by setting running to
+    False, this ends the while loop in main. Else return False.
+    """
+    if user_input.lower() == 'q':
+        global running
+        running = False
+        return True
+    else:
+        return False
+
+
 def choose_quiz_type():
     """
     User picks whether to be tested on level number, description, or both.
     """
     print("Would you like to be tested on level number, description, or both?")
     user_choice = input("Type l, d, or b then press enter to choose.\n")
+
+    # End game loop if user types q
+    # Return to prevent execution of the rest of the function
+    if check_quit(user_choice): return
+
     return QuizTypeEnum.input_chars[user_choice]
 
 
@@ -48,7 +76,13 @@ def description_question():
     """
     level, description = random.choice(TRL_LIST)
     print(f"What happens at level {level}?")
-    input("Press enter to reveal answer:")
+    user_input = input("Press enter to reveal answer:")
+
+    # End game loop if user types q
+    # Return to prevent execution of the rest of the function
+    if check_quit(user_input): return
+
+    # Print correct answer and space before next question
     print(description)
     print('\n')
 
@@ -59,14 +93,20 @@ def level_question():
     """
     level, description = random.choice(TRL_LIST)
     print("What level is this?")
-    user_answer = input(f"{description}\n")
+    user_input = input(f"{description}\n")
 
+    # End game loop if user types q
+    # Return to prevent execution of the rest of the function
+    if check_quit(user_input): return
+
+    # Convert input string to int, parse non-numerical input error
     try:
-        user_answer = int(user_answer.strip())
+        user_input = int(user_input.strip())
     except ValueError:
         print(f"Incorrect answer format, this is level {level}")
 
-    if user_answer == level:
+    # Check user answer and inform user accordingly
+    if user_input == level:
         print("Correct")
     else:
         print(f"Incorrect, this is level {level}")
@@ -81,7 +121,6 @@ if __name__ == "__main__":
     quiz_type = choose_quiz_type()
 
     # While the loop runs the user is asked questions
-    running = True
     while running:
         # Each loop print a question based on the quiz type
         if quiz_type == QuizTypeEnum.both:
