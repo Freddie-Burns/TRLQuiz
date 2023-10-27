@@ -1,6 +1,6 @@
 """
 Command line quiz to learn the EU Technology Readiness Level definitions.
-Press q at any time to quit.
+Enter q at any time to quit.
 """
 
 
