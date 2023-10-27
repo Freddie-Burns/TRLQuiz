@@ -1,17 +1,17 @@
 import random
 
 
-# Technology readiness level and description
+# Technology readiness level and description from EU definitions
 trl = {
-    9: "System launch and operation",
-    8: "Systems and subsystems",
-    7: "Technology demonstration",
-    6: "",
-    5: "",
-    4: "Technology development",
-    3: "Feasibility tests",
-    2: "Basic science research",
-    1: "Conceptual stage",
+    9: "Actual system proven in operational environment",
+    8: "System complete and qualified",
+    7: "System prototype demonstration in operational environment",
+    6: "Technology demonstrated in relevant environment",
+    5: "Technology validated in relevant environment",
+    4: "Technology validated in lab",
+    3: "Experimental proof of concept",
+    2: "Technology concept formulated",
+    1: "Basic principles observed",
 }
 
 # Create list from dict for random.choice
