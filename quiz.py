@@ -90,7 +90,11 @@ def description_question():
 def level_question():
     """
     User is given the TRL description and must enter the corresponding level.
+    Return True if correct, False if incorrect.
     """
+    # Parameter to return if user is correct for score counting
+    correct = None
+
     level, description = random.choice(TRL_LIST)
     print("What level is this?")
     user_input = input(f"{description}\n")
@@ -108,11 +112,15 @@ def level_question():
     # Check user answer and inform user accordingly
     if user_input == level:
         print("Correct")
+        correct = True
     else:
         print(f"Incorrect, this is level {level}")
+        correct = False
 
     # Final blank line to separate next question
     print('\n')
+
+    return correct
 
 
 if __name__ == "__main__":
